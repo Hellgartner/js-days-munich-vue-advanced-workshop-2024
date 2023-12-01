@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts" setup>
-import ToggleableCard from "./ToggleableCard.vue";
+import ToggleableCard from "../ToggleableCard/ToggleableCard.vue";
 
 const props = defineProps<{
   value: string;

@@ -14,5 +14,5 @@ const props = defineProps<{
 </script>
 
 <style scoped lang="scss">
-@import "src/style/scrumestimation_card";
+@import "../../style/scrumestimation_card";
 </style>

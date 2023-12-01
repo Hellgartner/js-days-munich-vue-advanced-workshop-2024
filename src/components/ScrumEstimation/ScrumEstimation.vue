@@ -30,7 +30,7 @@
 <script lang="ts" setup>
 import { ref, computed } from "vue";
 import scrumEstimationValues from "@/services/scrumEstimationValuesProvider";
-import ScrumEstimationCard from "./ScrumEstimationCard.vue";
+import ScrumEstimationCard from "../ScrumEstimationCard/ScrumEstimationCard.vue";
 
 const selectedValue = ref<string | undefined>(undefined);
 const possibleSelectionTypes = ref(Object.keys(scrumEstimationValues));
