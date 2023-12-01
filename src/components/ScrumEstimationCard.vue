@@ -1,0 +1,25 @@
+<template>
+  <ToggleableCard
+    :selected="props.value === props.selectedValue"
+    @click="emitSelected"
+  >
+    {{ props.value }}
+  </ToggleableCard>
+</template>
+
+<script lang="ts" setup>
+import ToggleableCard from "./ToggleableCard.vue";
+
+const props = defineProps<{
+  value: string;
+  selectedValue?: string;
+}>();
+
+const emit = defineEmits<{
+  (e: "selected", value: string): void;
+}>();
+
+const emitSelected = () => {
+  emit("selected", props.value);
+};
+</script>

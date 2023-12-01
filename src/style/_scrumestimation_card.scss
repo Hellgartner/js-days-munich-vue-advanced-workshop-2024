@@ -1,0 +1,15 @@
+.awesomescrumestimation-card {
+  display: inline-block;
+  border: 3px solid black;
+  border-radius: 10px;
+  background-color: lightgray;
+  width: 80px;
+  height: 80px;
+  padding: 10px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.awesomescrumestimation-card--selected {
+  background-color: red;
+}
