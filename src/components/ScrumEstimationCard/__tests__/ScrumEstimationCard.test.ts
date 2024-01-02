@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import {fireEvent, queryByTestId, render} from '@testing-library/vue'
+import {fireEvent, getByTestId, render} from '@testing-library/vue'
 import ScrumEstimationCard from "../ScrumEstimationCard.vue";
 
 describe('ScrumEstimationCard', () => {
@@ -16,9 +16,9 @@ describe('ScrumEstimationCard', () => {
             props: {value: "some test value"}
         })
 
-        const toggleableCard = queryByTestId(container as HTMLElement, 'scrum-estimation-card') as HTMLDivElement;
-        const textContent = toggleableCard.textContent;
-        expect(textContent).toEqual('some test value')
+        const toggleableCard = getByTestId(container as HTMLElement, 'scrum-estimation-card') as HTMLDivElement;
+        expect(toggleableCard).toHaveTextContent('some test value');
+        expect(toggleableCard).toBeVisible;
     })
 
     it('selects the card if value and selected value are the same', () => {
@@ -29,8 +29,8 @@ describe('ScrumEstimationCard', () => {
             }
         })
 
-        const toggleableCard = queryByTestId(container as HTMLElement, 'scrum-estimation-card') as HTMLDivElement;
-        expect(toggleableCard.classList.contains('awesomescrumestimation-card--selected')).toBeTruthy
+        const toggleableCard = getByTestId(container as HTMLElement, 'scrum-estimation-card') as HTMLDivElement;
+        expect(toggleableCard).toHaveClass('awesomescrumestimation-card--selected');
     })
 
     it('does not select the card if value and selected value are the same', () => {
@@ -41,8 +41,8 @@ describe('ScrumEstimationCard', () => {
             }
         })
 
-        const toggleableCard = queryByTestId(container as HTMLElement, 'scrum-estimation-card') as HTMLDivElement;
-        expect(toggleableCard.classList.contains('awesomescrumestimation-card--selected')).toBeFalsy
+        const toggleableCard = getByTestId(container as HTMLElement, 'scrum-estimation-card') as HTMLDivElement;
+        expect(toggleableCard).not.toHaveClass('awesomescrumestimation-card--selected');
     })
 
     it('emits the selected event on click', async ()=> {
@@ -50,7 +50,7 @@ describe('ScrumEstimationCard', () => {
             props: {value: "some test value"}
         })
 
-        const toggleableCard = queryByTestId(container as HTMLElement, 'scrum-estimation-card') as HTMLDivElement;
+        const toggleableCard = getByTestId(container as HTMLElement, 'scrum-estimation-card') as HTMLDivElement;
         await fireEvent.click(toggleableCard);
 
         const selectedEvent = emitted<string[]>('selected');
