@@ -2,6 +2,7 @@
   <ToggleableCard
     :selected="props.value === props.selectedValue"
     @click="emitSelected"
+    data-testid="scrum-estimation-card"
   >
     {{ props.value }}
   </ToggleableCard>
