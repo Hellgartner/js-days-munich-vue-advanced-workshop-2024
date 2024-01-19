@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import ScrumEstimation from '@/components/ScrumEstimation/ScrumEstimation.vue'
+import ScrumEstimationPage from "@/components/ScrumEstimationPage/ScrumEstimationPage.vue";
 </script>
 
 <template>
-  <ScrumEstimation></ScrumEstimation>
+  <ScrumEstimationPage></ScrumEstimationPage>
 </template>

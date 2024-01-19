@@ -20,7 +20,7 @@ const estimationResults: EstimationResult[] = [
   },
   {
     name: 'Tom Wilson',
-    result: '8',
+    result: undefined,
   },
 ];
 @Injectable()
