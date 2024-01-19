@@ -8,7 +8,7 @@ export const getToggleableCard = (container: HTMLElement): HTMLElement => {
 export const expectVisibleText = (container: HTMLElement, expectedText: string):void => {
     const toggleableCard = getToggleableCard(container as HTMLElement);
     expect(toggleableCard).toHaveTextContent(expectedText);
-    expect(toggleableCard).toBeVisible;
+    expect(toggleableCard).toBeVisible();
 }
 
 export const expectSelectedEventToBeFiredWithValue = (emitted: <T = unknown>(name?: string)=>  T[], valueSelected: String):void => {
