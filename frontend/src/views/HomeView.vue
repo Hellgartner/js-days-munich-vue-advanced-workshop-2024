@@ -1,15 +1,63 @@
 <script setup lang="ts">
-import { useRouter } from 'vue-router'
+import {useRouter} from 'vue-router'
 
 const router = useRouter();
 const login = () => router.push({path: "estimation"});
 </script>
 
 <template>
-  <main>
-    <div>
-      <span>Name:</span> <input>
+  <div class="login-form">
+    <div class="heading">Next Generation Scrum Poker</div>
+    <div class="name-input">
+      Name: <input class="input-field">
     </div>
-    <button @click="login">Login</button>
-  </main>
+    <button class="login-button" @click="login">Login</button>
+  </div>
 </template>
+
+<style scoped lang="scss">
+.login-form {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  grid-template-areas:
+    "heading"
+    "name"
+    "login";
+  min-height: 100vh;
+  min-width: 100vw;
+  grid-row-gap: 20px;
+  font-family: sans-serif;
+}
+
+.heading {
+  grid-area: heading;
+  padding-bottom: 10px;
+  font-size: 32px;
+  color: rgb(5, 99, 165);
+}
+
+.name-input {
+  font-size: 18px;
+  line-height: 150%;
+  grid-area: name;
+  align-items: baseline;
+
+  display: flex;
+  gap: 10px;
+
+  .input-field {
+    flex-grow: 1;
+    font-size: 18px;
+    line-height: 150%;
+  }
+}
+
+.login-button {
+  grid-area: login;
+  font-size: 18px;
+  line-height: 150%;
+  height: 36px;
+}
+
+</style>
