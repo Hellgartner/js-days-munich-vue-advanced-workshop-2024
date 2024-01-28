@@ -8,10 +8,17 @@
           <div>{{ result.name }}</div><div>{{ result.result ? 'voted' : "not yet voted"}}</div>
         </template>
     </div>
+    <div class="button-container">
+      <button @click="goToResultsPage()" class="button" :disabled="disabled">Show results</button>
+    </div>
+
   </section>
 </template>
 
 <script setup lang="ts">
+
+import router from "@/router";
+import {computed} from "vue";
 
 interface EstimationResult {
   name: string;
@@ -23,7 +30,16 @@ interface EstimationStatusProps {
 
 const props = defineProps<EstimationStatusProps>()
 
+const disabled = computed(()=> {
+  console.log(props.estimationResults, props.estimationResults.length)
+  return !props.estimationResults
+      || props.estimationResults.length == 0
+      || !props.estimationResults.every((result ) => !!result.result)
+})
 
+const goToResultsPage = () => {
+  router.push({path: "result"})
+}
 </script>
 
 <style scoped lang="scss">
@@ -45,5 +61,14 @@ const props = defineProps<EstimationStatusProps>()
 
 .header {
   font-weight: bold;
+}
+
+.button-container {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.button {
+  padding: 10px
 }
 </style>
