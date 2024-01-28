@@ -1,15 +1,13 @@
 <template>
   <section class="results-section">
-    <table  class="results-table">
-      <thead>
-        <tr><th>Name</th><th>Result</th></tr>
-      </thead>
-      <tbody>
-        <tr v-for="result in results" :key="result.name">
-          <td>{{ result.name }}</td><td>{{ result.result ? 'voted' : "not yet voted"}}</td>
-        </tr>
-      </tbody>
-    </table>
+    <div  class="results-table">
+
+        <div class="header">Name</div><div class="header">Voting Status</div>
+        <div>&nbsp;</div><div>&nbsp;</div>
+        <template v-for="result in results" :key="result.name">
+          <div>{{ result.name }}</div><div>{{ result.result ? 'voted' : "not yet voted"}}</div>
+        </template>
+    </div>
   </section>
 </template>
 
@@ -43,10 +41,18 @@ onMounted( async () => {
 }
 
 .results-table {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 20px;
   margin-left: auto;
   margin-right: auto;
   padding: 20px;
   border: 3px solid black;
+  max-width: 400px;
   border-radius: 10px;
+}
+
+.header {
+  font-weight: bold;
 }
 </style>
