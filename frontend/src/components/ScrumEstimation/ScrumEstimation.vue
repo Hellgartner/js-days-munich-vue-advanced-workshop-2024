@@ -14,7 +14,7 @@
       <button @click="removeSelection">Remove selection</button>
     </div>
     <div>
-      <select v-model="selectedSelectionType">
+      <select v-model="selectedSelectionType" @change="selectEstimationVariant">
         <option
           v-for="type in possibleSelectionTypes"
           :key="type"
@@ -29,13 +29,23 @@
 
 <script lang="ts" setup>
 import { ref, computed } from "vue";
-import scrumEstimationValues from "@/services/scrumEstimationValuesProvider";
+import scrumEstimationValues, {type EstimationVariant} from "@/services/scrumEstimationValuesProvider";
 import ScrumEstimationCard from "../ScrumEstimationCard/ScrumEstimationCard.vue";
+
+interface EstimationProps  {
+  initialEstimationVariant: EstimationVariant
+}
+
+const props = defineProps<EstimationProps>()
+
+const emit = defineEmits<{
+  (e: "estimationVariantChanged", value: EstimationVariant): void;
+}>();
 
 const selectedValue = ref<string | undefined>(undefined);
 const possibleSelectionTypes = ref(Object.keys(scrumEstimationValues));
 const selectedSelectionType =
-  ref<keyof typeof scrumEstimationValues>("fibonacci");
+  ref<EstimationVariant>(props.initialEstimationVariant);
 const estimationValuesToShow = computed(
   () => scrumEstimationValues[selectedSelectionType.value]
 );
@@ -47,6 +57,12 @@ const selectCard = (valueToSelect: string) => {
 const removeSelection = () => {
   selectedValue.value = undefined;
 };
+
+const selectEstimationVariant = () => {
+  console.log("selected variant", selectedSelectionType.value)
+  emit('estimationVariantChanged', selectedSelectionType.value)
+}
+
 </script>
 
 <style scoped lang="scss">

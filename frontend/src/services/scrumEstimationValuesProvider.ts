@@ -1,4 +1,6 @@
-const scrumEstimationValues: Record<"fibonacci" | "shirtSize", string[]> = {
+export type EstimationVariant = 'fibonacci' | 'shirtSize';
+
+const scrumEstimationValues: Record<EstimationVariant, string[]> = {
   fibonacci: [
     "cup",
     "?",
