@@ -6,7 +6,7 @@
       </thead>
       <tbody>
         <tr v-for="result in results" :key="result.name">
-          <td>{{ result.name }}</td><td>{{ result.result ? result.result : "not yet voted"}}</td>
+          <td>{{ result.name }}</td><td>{{ result.result ? 'voted' : "not yet voted"}}</td>
         </tr>
       </tbody>
     </table>
