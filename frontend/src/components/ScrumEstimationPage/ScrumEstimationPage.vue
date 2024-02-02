@@ -3,7 +3,11 @@
     Backend not reachable, please reload the page
   </div>
   <div class="center-content">
-    <ScrumEstimation :initial-estimation-variant="currentEstimationVariant" @estimation-variant-changed="setCurrentEstimationVariant"></ScrumEstimation>
+    <ScrumEstimation :initial-estimation-variant="currentEstimationVariant"
+                     @estimation-variant-changed="setCurrentEstimationVariant"
+                     @estimationChanged="updatePlayersResult">
+    >
+    </ScrumEstimation>
     <EstimationStatus :estimation-results="results"></EstimationStatus>
   </div>
 </template>
@@ -13,7 +17,18 @@
   import EstimationStatus from "@/components/EstimationStatus/EstimationStatus.vue";
   import {onMounted, onUnmounted, ref} from "vue";
   import type {EstimationVariant} from "@/services/scrumEstimationValuesProvider";
+
+  interface EstimationResult {
+    name: string;
+    result?: string;
+  }
+
   const communicationError = ref(false)
+  //to be moved to store + name to be done properly
+  const playerResult = ref<EstimationResult>({
+    name: "player",
+    result: undefined
+  })
 
   async function startVotingWithCurrentVariant(variant:EstimationVariant) {
     try{
@@ -36,12 +51,13 @@
       startVotingWithCurrentVariant(variant)
   }
 
-  const results = ref([]);
+  const results = ref<EstimationResult[]>([]);
 
   async function fetchVotingResults() {
     try {
       const fetchResult = await fetch("http://localhost:3000/estimation/results")
       results.value = await fetchResult.json()
+      results.value.push(playerResult.value)
     } catch (e) {
       console.error(e)
       results.value = []
@@ -58,6 +74,10 @@
   onUnmounted(() => {
     clearInterval(intervalId)
   })
+
+  const updatePlayersResult = (result: string|undefined) => {
+    playerResult.value.result = result
+  }
 </script>
 
 <style scoped lang="scss">
