@@ -22,8 +22,8 @@
 
 import router from "@/router";
 import {computed} from "vue";
-import YesIcon from '../../../public/done-icon.svg';
-import NoIcon from '../../../public/red-x-line-icon.svg';
+import YesIcon from '../../assets/done-icon.svg';
+import NoIcon from '../../assets/red-x-line-icon.svg';
 
 interface EstimationResult {
   name: string;
