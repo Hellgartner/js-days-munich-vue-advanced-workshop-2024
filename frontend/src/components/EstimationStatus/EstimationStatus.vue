@@ -1,11 +1,11 @@
 <template>
-  <section class="results-section">
+  <section class="results-section" data-testid="estimation-status">
     <div  class="results-table">
 
         <div class="header">Name</div><div class="header">Voting Status</div>
         <div>&nbsp;</div><div>&nbsp;</div>
         <template v-for="result in props.estimationResults" :key="result.name">
-          <div>{{ result.name }}</div>
+          <div data-testid="result-name">{{ result.name }}</div>
           <div>
             <YesIcon v-if="!!result.result" class="status-icon"/>
             <NoIcon v-else class="status-icon"/>

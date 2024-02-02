@@ -8,7 +8,7 @@
                      @estimationChanged="updatePlayersResult">
     >
     </ScrumEstimation>
-    <EstimationStatus :estimation-results="results"></EstimationStatus>
+    <EstimationStatus :estimation-results="results" data-testid="estimation-status"></EstimationStatus>
   </div>
 </template>
 
