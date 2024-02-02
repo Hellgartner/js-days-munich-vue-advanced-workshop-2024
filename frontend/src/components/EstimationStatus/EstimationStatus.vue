@@ -5,7 +5,11 @@
         <div class="header">Name</div><div class="header">Voting Status</div>
         <div>&nbsp;</div><div>&nbsp;</div>
         <template v-for="result in props.estimationResults" :key="result.name">
-          <div>{{ result.name }}</div><div>{{ result.result ? 'voted' : "not yet voted"}}</div>
+          <div>{{ result.name }}</div>
+          <div>
+            <div v-if="!!result.result"><img class="status-icon" src="http://localhost:5173/done-icon.svg" alt="voted"></div>
+            <div v-else><img class="status-icon" src="http://localhost:5173/red-x-line-icon.svg" alt="not voted"></div>
+          </div>
         </template>
     </div>
     <div class="button-container">
@@ -31,7 +35,6 @@ interface EstimationStatusProps {
 const props = defineProps<EstimationStatusProps>()
 
 const disabled = computed(()=> {
-  console.log(props.estimationResults, props.estimationResults.length)
   return !props.estimationResults
       || props.estimationResults.length == 0
       || !props.estimationResults.every((result ) => !!result.result)
@@ -70,5 +73,9 @@ const goToResultsPage = () => {
 
 .button {
   padding: 10px
+}
+
+.status-icon {
+  height: 1em;
 }
 </style>
