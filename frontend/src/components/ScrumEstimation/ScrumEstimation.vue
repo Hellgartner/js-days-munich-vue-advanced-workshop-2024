@@ -40,6 +40,7 @@ const props = defineProps<EstimationProps>()
 
 const emit = defineEmits<{
   (e: "estimationVariantChanged", value: EstimationVariant): void;
+  (e: "estimationChanged", value: string | undefined):void
 }>();
 
 const selectedValue = ref<string | undefined>(undefined);
@@ -52,10 +53,12 @@ const estimationValuesToShow = computed(
 
 const selectCard = (valueToSelect: string) => {
   selectedValue.value = valueToSelect;
+  emit("estimationChanged", valueToSelect)
 };
 
 const removeSelection = () => {
   selectedValue.value = undefined;
+  emit("estimationChanged", undefined)
 };
 
 const selectEstimationVariant = () => {
