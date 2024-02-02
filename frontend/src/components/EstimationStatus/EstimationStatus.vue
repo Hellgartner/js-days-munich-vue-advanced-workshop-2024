@@ -7,15 +7,14 @@
         <template v-for="result in props.estimationResults" :key="result.name">
           <div>{{ result.name }}</div>
           <div>
-            <div v-if="!!result.result"><img class="status-icon" src="http://localhost:5173/done-icon.svg" alt="voted"></div>
-            <div v-else><img class="status-icon" src="http://localhost:5173/red-x-line-icon.svg" alt="not voted"></div>
+            <YesIcon v-if="!!result.result" class="status-icon"/>
+            <NoIcon v-else class="status-icon"/>
           </div>
         </template>
     </div>
     <div class="button-container">
       <button @click="goToResultsPage()" class="button" :disabled="disabled">Show results</button>
     </div>
-
   </section>
 </template>
 
@@ -23,6 +22,8 @@
 
 import router from "@/router";
 import {computed} from "vue";
+import YesIcon from '../../../public/done-icon.svg';
+import NoIcon from '../../../public/red-x-line-icon.svg';
 
 interface EstimationResult {
   name: string;
