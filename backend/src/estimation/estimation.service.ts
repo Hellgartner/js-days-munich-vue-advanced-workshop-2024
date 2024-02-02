@@ -32,6 +32,14 @@ const votingSettings: Record<string, VotingSetting> = {
     },
     maxTimeToVoteS: 25,
   },
+  'Alice Johnson': {
+    result: { fibonacci: '13', shirtSize: 'M' },
+    maxTimeToVoteS: 30,
+  },
+  'Bob Brown': {
+    result: { fibonacci: '21', shirtSize: 'L' },
+    maxTimeToVoteS: 10,
+  },
 };
 
 export class EstimationService {
@@ -39,6 +47,7 @@ export class EstimationService {
   logger = new Logger('EstimationService');
   votingStatus = {};
   startDate = Date.now();
+
   constructor() {}
 
   #resetVotes() {
