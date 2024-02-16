@@ -8,14 +8,14 @@
                      @estimationChanged="updatePlayersResult">
     >
     </ScrumEstimation>
-    <EstimationStatus :estimation-results="results" data-testid="estimation-status"></EstimationStatus>
+    <EstimationStatus :estimation-results="resultsIncludingPlayerResult" data-testid="estimation-status"></EstimationStatus>
   </div>
 </template>
 
 <script setup lang="ts">
   import ScrumEstimation from "@/components/ScrumEstimation/ScrumEstimation.vue";
   import EstimationStatus from "@/components/EstimationStatus/EstimationStatus.vue";
-  import {onMounted, onUnmounted, ref} from "vue";
+  import {computed, onMounted, onUnmounted, ref} from "vue";
   import type {EstimationVariant} from "@/services/scrumEstimationValuesProvider";
 
   interface EstimationResult {
@@ -57,7 +57,6 @@
     try {
       const fetchResult = await fetch("http://localhost:3000/estimation/results")
       results.value = await fetchResult.json()
-      results.value.push(playerResult.value)
     } catch (e) {
       console.error(e)
       results.value = []
@@ -73,6 +72,10 @@
 
   onUnmounted(() => {
     clearInterval(intervalId)
+  })
+
+  const resultsIncludingPlayerResult = computed<EstimationResult[]>(() => {
+    return [...results.value, playerResult.value]
   })
 
   const updatePlayersResult = (result: string|undefined) => {
