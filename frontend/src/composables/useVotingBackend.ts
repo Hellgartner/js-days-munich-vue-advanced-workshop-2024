@@ -1,5 +1,6 @@
 import type {EstimationVariant} from "@/services/scrumEstimationValuesProvider";
 import {onMounted, onUnmounted, ref} from "vue";
+import {Exception} from "sass";
 
 export interface EstimationResult {
     name: string;
@@ -7,6 +8,8 @@ export interface EstimationResult {
 }
 
 const useVotingBackend = (doPoll: boolean, initialEstimationVariant?: EstimationVariant) => {
+    const error = ref<String|undefined>(undefined)
+    const loading = ref(true)
     async function startVotingWithCurrentVariant(variant:EstimationVariant) {
         try{
             await fetch("http://localhost:3000/estimation/vote", {
@@ -18,6 +21,7 @@ const useVotingBackend = (doPoll: boolean, initialEstimationVariant?: Estimation
             })}
         catch (e) {
             console.error(e);
+            error.value = ""+e;
         }
     }
     const currentEstimationVariant = ref<EstimationVariant>('fibonacci');
@@ -33,9 +37,12 @@ const useVotingBackend = (doPoll: boolean, initialEstimationVariant?: Estimation
         try {
             const fetchResult = await fetch("http://localhost:3000/estimation/results")
             results.value = await fetchResult.json()
+            loading.value = false;
         } catch (e) {
             console.error(e)
+            error.value = ""+e;
             results.value = []
+            loading.value = true
         }
     }
 
@@ -60,7 +67,9 @@ const useVotingBackend = (doPoll: boolean, initialEstimationVariant?: Estimation
 
     return {
         results,
-        setCurrentEstimationVariant
+        setCurrentEstimationVariant,
+        error,
+        loading
     }
 }
 

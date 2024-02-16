@@ -1,9 +1,8 @@
 import {afterAll, afterEach, beforeAll, beforeEach, describe} from "vitest";
-import { setupServer, SetupServerApi } from 'msw/node';
+import {setupServer, SetupServerApi} from 'msw/node';
 import {http, HttpResponse} from 'msw';
-import {getAllByTestId, getByTestId, queryAllByTestId, render} from "@testing-library/vue";
+import {render} from "@testing-library/vue";
 import ScrumEstimationPage from "../ScrumEstimationPage.vue";
-import wait from "../../../testHelpers/wait";
 import type {EstimationVariant} from "../../../services/scrumEstimationValuesProvider";
 import {flushPromises} from "@vue/test-utils";
 import {expectNamesInOrder, getEstimationStatus} from "../../EstimationStatus/__tests__/EstimationStatus.assertions";

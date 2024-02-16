@@ -1,5 +1,5 @@
 <template>
-  <div v-if="communicationError" class="error">
+  <div v-if="error" class="error">
     Backend not reachable, please reload the page
   </div>
   <div class="center-content">
@@ -19,8 +19,6 @@ import EstimationStatus from "@/components/EstimationStatus/EstimationStatus.vue
 import {computed, ref} from "vue";
 import useVotingBackend, {type EstimationResult} from "@/composables/useVotingBackend";
 
-
-const communicationError = ref(false)
 //to be moved to store + name to be done properly
 const playerResult = ref<EstimationResult>({
   name: "player",
@@ -28,7 +26,7 @@ const playerResult = ref<EstimationResult>({
 })
 
 const initialEstimationVariant = "fibonacci";
-const {results, setCurrentEstimationVariant} = useVotingBackend(true, initialEstimationVariant)
+const {results, setCurrentEstimationVariant, error} = useVotingBackend(true, initialEstimationVariant)
 
 const resultsIncludingPlayerResult = computed<EstimationResult[]>(() => {
   return [...results.value, playerResult.value]
