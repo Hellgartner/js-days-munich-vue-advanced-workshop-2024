@@ -1,15 +1,25 @@
 <template>
   <div class="results-view">
     <h1 class="results-view__heading">Result</h1>
-    <EstimationResult :estimation-results="results" class="results-view__estimation-status"></EstimationResult>
+    <EstimationResults
+      :estimation-results="resultsIncludingPlayerResult"
+      class="results-view__estimation-status"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
-import {onMounted, ref} from "vue";
-import EstimationResult from "@/components/EstimationResult/EstimationResult.vue";
+import {computed, onMounted, ref} from 'vue'
+import EstimationResults from '@/components/EstimationResult/EstimationResults.vue'
+import {usePlayerResultStore} from '@/stores/PlayerEstimationResultStore'
+import type {EstimationResult} from '@/components/EstimationStatus/EstimationStatus.vue'
 
-const results = ref([]);
+const results = ref<EstimationResult[]>([])
+const playerResultStore = usePlayerResultStore()
+
+const resultsIncludingPlayerResult = computed<EstimationResult[]>(() => {
+  return [...results.value, playerResultStore.results]
+})
 
 async function fetchVotingResults() {
   const fetchResult = await fetch("http://localhost:3000/estimation/results")

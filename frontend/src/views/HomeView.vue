@@ -1,16 +1,22 @@
 <script setup lang="ts">
 import {useRouter} from 'vue-router'
+import {usePlayerResultStore} from '@/stores/PlayerEstimationResultStore'
+import {ref} from 'vue'
 
-const router = useRouter();
-const login = () => router.push({path: "estimation"});
+const router = useRouter()
+const store = usePlayerResultStore()
+
+const input = ref<string>('')
+const login = () => {
+  store.setPlayerName(input.value)
+  router.push({ path: 'estimation' })
+}
 </script>
 
 <template>
   <div class="login-form">
     <div class="heading">Next Generation Scrum Poker</div>
-    <div class="name-input">
-      Name: <input class="input-field">
-    </div>
+    <div class="name-input">Name: <input class="input-field" v-model="input" /></div>
     <button class="login-button" @click="login">Login</button>
   </div>
 </template>

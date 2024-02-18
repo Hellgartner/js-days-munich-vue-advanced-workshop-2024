@@ -1,12 +1,14 @@
 <template>
   <section>
     <div class="results-table">
-        <div class="header">Name</div><div class="header">Vote</div>
-        <div>&nbsp;</div><div>&nbsp;</div>
-        <template v-for="result in props.estimationResults" :key="result.name">
-          <div>{{ result.name }}</div>
-          <div class="results-table__right-column">{{ result.result }}</div>
-        </template>
+      <div class="header">Name</div>
+      <div class="header">Vote</div>
+      <div>&nbsp;</div>
+      <div>&nbsp;</div>
+      <template v-for="result in props.estimationResults" :key="result.name">
+        <div>{{ result.name }}</div>
+        <div class="results-table__right-column">{{ result.result }}</div>
+      </template>
     </div>
     <div class="button-container">
       <button @click="goToEstimationPage()" class="button">Reset results</button>
@@ -15,21 +17,17 @@
 </template>
 
 <script setup lang="ts">
-
-import router from "@/router";
-
-interface EstimationResult {
-  name: string;
-  result?: string;
-}
-interface EstimationStatusProps {
-  estimationResults : EstimationResult[]
-}
+import router from '@/router'
+import {usePlayerResultStore} from '@/stores/PlayerEstimationResultStore'
+import type {EstimationStatusProps} from '@/components/EstimationStatus/EstimationStatus.vue'
 
 const props = defineProps<EstimationStatusProps>()
 
+const playerResultStore = usePlayerResultStore()
+
 const goToEstimationPage = () => {
-  router.push({path: "estimation"})
+  playerResultStore.resetPlayerResult()
+  router.push({ path: 'estimation' })
 }
 </script>
 

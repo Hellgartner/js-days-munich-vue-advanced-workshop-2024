@@ -25,12 +25,12 @@ import {computed} from "vue";
 import YesIcon from '../../assets/done-icon.svg';
 import NoIcon from '../../assets/red-x-line-icon.svg';
 
-interface EstimationResult {
+export interface EstimationResult {
   name: string;
   result?: string;
 }
-interface EstimationStatusProps {
-  estimationResults : EstimationResult[]
+export interface EstimationStatusProps {
+  estimationResults: EstimationResult[]
 }
 
 const props = defineProps<EstimationStatusProps>()

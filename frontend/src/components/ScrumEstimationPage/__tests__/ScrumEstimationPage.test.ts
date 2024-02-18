@@ -6,6 +6,7 @@ import ScrumEstimationPage from "../ScrumEstimationPage.vue";
 import type {EstimationVariant} from "../../../services/scrumEstimationValuesProvider";
 import {flushPromises} from "@vue/test-utils";
 import {expectNamesInOrder, getEstimationStatus} from "../../EstimationStatus/__tests__/EstimationStatus.assertions";
+import {createPinia, setActivePinia} from "pinia";
 
 let server: SetupServerApi | undefined = undefined;
 
@@ -37,6 +38,7 @@ const voteResultsHandler =
 
 describe('ScrumEstimationPage', () => {
     beforeAll(() => {
+        setActivePinia(createPinia())
         server = setupServer();
         server?.listen();
     } )
@@ -76,6 +78,6 @@ describe('ScrumEstimationPage', () => {
         await flushPromises()
 
         const estimationStatus = getEstimationStatus(container);
-        expectNamesInOrder(estimationStatus, ["Franz Xaver", "Bob Brown", "player"])
+        expectNamesInOrder(estimationStatus, ["Franz Xaver", "Bob Brown", "Player"])
     })
 })

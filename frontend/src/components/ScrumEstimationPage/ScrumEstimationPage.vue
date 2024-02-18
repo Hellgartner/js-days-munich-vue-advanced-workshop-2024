@@ -1,39 +1,41 @@
 <template>
-  <div v-if="error" class="error">
-    Backend not reachable, please reload the page
-  </div>
+  <div v-if="error" class="error">Backend not reachable, please reload the page</div>
   <div class="center-content">
-    <ScrumEstimation :initial-estimation-variant="initialEstimationVariant"
-                     @estimation-variant-changed="setCurrentEstimationVariant"
-                     @estimationChanged="updatePlayersResult">
+    <ScrumEstimation
+      :initial-estimation-variant="initialEstimationVariant"
+      @estimation-variant-changed="setCurrentEstimationVariant"
+      @estimationChanged="updatePlayersResult"
+    >
       >
     </ScrumEstimation>
-    <EstimationStatus :estimation-results="resultsIncludingPlayerResult"
-                      data-testid="estimation-status"></EstimationStatus>
+    <EstimationStatus
+      :estimation-results="resultsIncludingPlayerResult"
+      data-testid="estimation-status"
+    ></EstimationStatus>
   </div>
 </template>
 
 <script setup lang="ts">
-import ScrumEstimation from "@/components/ScrumEstimation/ScrumEstimation.vue";
-import EstimationStatus from "@/components/EstimationStatus/EstimationStatus.vue";
-import {computed, ref} from "vue";
-import useVotingBackend, {type EstimationResult} from "@/composables/useVotingBackend";
+import ScrumEstimation from '@/components/ScrumEstimation/ScrumEstimation.vue'
+import EstimationStatus from '@/components/EstimationStatus/EstimationStatus.vue'
+import { computed } from 'vue'
+import useVotingBackend, { type EstimationResult } from '@/composables/useVotingBackend'
+import { usePlayerResultStore } from '@/stores/PlayerEstimationResultStore'
 
-//to be moved to store + name to be done properly
-const playerResult = ref<EstimationResult>({
-  name: "player",
-  result: undefined
-})
+const playerResultStore = usePlayerResultStore()
 
-const initialEstimationVariant = "fibonacci";
-const {results, setCurrentEstimationVariant, error} = useVotingBackend(true, initialEstimationVariant)
+const initialEstimationVariant = 'fibonacci'
+const { results, setCurrentEstimationVariant, error } = useVotingBackend(
+  true,
+  initialEstimationVariant
+)
 
 const resultsIncludingPlayerResult = computed<EstimationResult[]>(() => {
-  return [...results.value, playerResult.value]
+  return [...results.value, playerResultStore.results]
 })
 
 const updatePlayersResult = (result: string | undefined) => {
-  playerResult.value.result = result
+  playerResultStore.setPlayerResult(result)
 }
 </script>
 
