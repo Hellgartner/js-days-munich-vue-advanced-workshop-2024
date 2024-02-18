@@ -1,16 +1,17 @@
 <template>
   <section class="results-section" data-testid="estimation-status">
-    <div  class="results-table">
-
-        <div class="header">Name</div><div class="header">Voting Status</div>
-        <div>&nbsp;</div><div>&nbsp;</div>
-        <template v-for="result in props.estimationResults" :key="result.name">
-          <div data-testid="result-name">{{ result.name }}</div>
-          <div>
-            <YesIcon v-if="!!result.result" class="status-icon"/>
-            <NoIcon v-else class="status-icon"/>
-          </div>
-        </template>
+    <div class="results-table">
+      <div class="header">Name</div>
+      <div class="header">Voting Status</div>
+      <div>&nbsp;</div>
+      <div>&nbsp;</div>
+      <template v-for="result in props.estimationResults" :key="result.name">
+        <div data-testid="result-name">{{ result.name }}</div>
+        <div>
+          <YesIcon v-if="!!result.result" class="status-icon" />
+          <NoIcon v-else class="status-icon" />
+        </div>
+      </template>
     </div>
     <div class="button-container">
       <button @click="goToResultsPage()" class="button" :disabled="disabled">Show results</button>
@@ -19,15 +20,14 @@
 </template>
 
 <script setup lang="ts">
-
-import router from "@/router";
-import {computed} from "vue";
-import YesIcon from '../../assets/done-icon.svg';
-import NoIcon from '../../assets/red-x-line-icon.svg';
+import router from '@/router'
+import { computed } from 'vue'
+import YesIcon from '../../assets/done-icon.svg'
+import NoIcon from '../../assets/red-x-line-icon.svg'
 
 export interface EstimationResult {
-  name: string;
-  result?: string;
+  name: string
+  result?: string
 }
 export interface EstimationStatusProps {
   estimationResults: EstimationResult[]
@@ -35,14 +35,16 @@ export interface EstimationStatusProps {
 
 const props = defineProps<EstimationStatusProps>()
 
-const disabled = computed(()=> {
-  return !props.estimationResults
-      || props.estimationResults.length == 0
-      || !props.estimationResults.every((result ) => !!result.result)
+const disabled = computed(() => {
+  return (
+    !props.estimationResults ||
+    props.estimationResults.length == 0 ||
+    !props.estimationResults.every((result) => !!result.result)
+  )
 })
 
 const goToResultsPage = () => {
-  router.push({path: "result"})
+  router.push({ path: 'result' })
 }
 </script>
 
@@ -73,7 +75,7 @@ const goToResultsPage = () => {
 }
 
 .button {
-  padding: 10px
+  padding: 10px;
 }
 
 .status-icon {

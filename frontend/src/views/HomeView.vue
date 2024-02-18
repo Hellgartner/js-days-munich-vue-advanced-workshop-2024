@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import {useRouter} from 'vue-router'
-import {usePlayerResultStore} from '@/stores/PlayerEstimationResultStore'
-import {ref} from 'vue'
+import { useRouter } from 'vue-router'
+import { usePlayerResultStore } from '@/stores/PlayerEstimationResultStore'
+import { ref } from 'vue'
 
 const router = useRouter()
 const store = usePlayerResultStore()
@@ -27,9 +27,9 @@ const login = () => {
   justify-content: center;
   align-content: center;
   grid-template-areas:
-    "heading"
-    "name"
-    "login";
+    'heading'
+    'name'
+    'login';
   min-height: 100vh;
   min-width: 100vw;
   grid-row-gap: 20px;
@@ -65,5 +65,4 @@ const login = () => {
   line-height: 150%;
   height: 36px;
 }
-
 </style>

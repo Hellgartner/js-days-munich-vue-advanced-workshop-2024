@@ -18,8 +18,8 @@
 
 <script setup lang="ts">
 import router from '@/router'
-import {usePlayerResultStore} from '@/stores/PlayerEstimationResultStore'
-import type {EstimationStatusProps} from '@/components/EstimationStatus/EstimationStatus.vue'
+import { usePlayerResultStore } from '@/stores/PlayerEstimationResultStore'
+import type { EstimationStatusProps } from '@/components/EstimationStatus/EstimationStatus.vue'
 
 const props = defineProps<EstimationStatusProps>()
 
@@ -58,7 +58,7 @@ const goToEstimationPage = () => {
 }
 
 .button {
-  padding: 10px
+  padding: 10px;
 }
 
 .status-icon {

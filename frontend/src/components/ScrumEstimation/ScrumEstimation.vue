@@ -15,11 +15,7 @@
     </div>
     <div>
       <select v-model="selectedSelectionType" @change="selectEstimationVariant">
-        <option
-          v-for="type in possibleSelectionTypes"
-          :key="type"
-          :value="type"
-        >
+        <option v-for="type in possibleSelectionTypes" :key="type" :value="type">
           {{ type }}
         </option>
       </select>
@@ -28,44 +24,42 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from "vue";
-import scrumEstimationValues, {type EstimationVariant} from "@/services/scrumEstimationValuesProvider";
-import ScrumEstimationCard from "../ScrumEstimationCard/ScrumEstimationCard.vue";
+import { ref, computed } from 'vue'
+import scrumEstimationValues, {
+  type EstimationVariant
+} from '@/services/scrumEstimationValuesProvider'
+import ScrumEstimationCard from '../ScrumEstimationCard/ScrumEstimationCard.vue'
 
-interface EstimationProps  {
+interface EstimationProps {
   initialEstimationVariant: EstimationVariant
 }
 
 const props = defineProps<EstimationProps>()
 
 const emit = defineEmits<{
-  (e: "estimationVariantChanged", value: EstimationVariant): void;
-  (e: "estimationChanged", value: string | undefined):void
-}>();
+  (e: 'estimationVariantChanged', value: EstimationVariant): void
+  (e: 'estimationChanged', value: string | undefined): void
+}>()
 
-const selectedValue = ref<string | undefined>(undefined);
-const possibleSelectionTypes = ref(Object.keys(scrumEstimationValues));
-const selectedSelectionType =
-  ref<EstimationVariant>(props.initialEstimationVariant);
-const estimationValuesToShow = computed(
-  () => scrumEstimationValues[selectedSelectionType.value]
-);
+const selectedValue = ref<string | undefined>(undefined)
+const possibleSelectionTypes = ref(Object.keys(scrumEstimationValues))
+const selectedSelectionType = ref<EstimationVariant>(props.initialEstimationVariant)
+const estimationValuesToShow = computed(() => scrumEstimationValues[selectedSelectionType.value])
 
 const selectCard = (valueToSelect: string) => {
-  selectedValue.value = valueToSelect;
-  emit("estimationChanged", valueToSelect)
-};
-
-const removeSelection = () => {
-  selectedValue.value = undefined;
-  emit("estimationChanged", undefined)
-};
-
-const selectEstimationVariant = () => {
-  console.log("selected variant", selectedSelectionType.value)
-  emit('estimationVariantChanged', selectedSelectionType.value)
+  selectedValue.value = valueToSelect
+  emit('estimationChanged', valueToSelect)
 }
 
+const removeSelection = () => {
+  selectedValue.value = undefined
+  emit('estimationChanged', undefined)
+}
+
+const selectEstimationVariant = () => {
+  console.log('selected variant', selectedSelectionType.value)
+  emit('estimationVariantChanged', selectedSelectionType.value)
+}
 </script>
 
 <style scoped lang="scss">

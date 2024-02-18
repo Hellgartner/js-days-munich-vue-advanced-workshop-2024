@@ -9,10 +9,10 @@
 
 <script lang="ts" setup>
 const props = defineProps<{
-  selected: boolean;
-}>();
+  selected: boolean
+}>()
 </script>
 
 <style scoped lang="scss">
-@import "../../style/scrumestimation_card";
+@import '../../style/scrumestimation_card';
 </style>

@@ -9,10 +9,10 @@
 </template>
 
 <script setup lang="ts">
-import {computed, onMounted, ref} from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import EstimationResults from '@/components/EstimationResult/EstimationResults.vue'
-import {usePlayerResultStore} from '@/stores/PlayerEstimationResultStore'
-import type {EstimationResult} from '@/components/EstimationStatus/EstimationStatus.vue'
+import { usePlayerResultStore } from '@/stores/PlayerEstimationResultStore'
+import type { EstimationResult } from '@/components/EstimationStatus/EstimationStatus.vue'
 
 const results = ref<EstimationResult[]>([])
 const playerResultStore = usePlayerResultStore()
@@ -22,7 +22,7 @@ const resultsIncludingPlayerResult = computed<EstimationResult[]>(() => {
 })
 
 async function fetchVotingResults() {
-  const fetchResult = await fetch("http://localhost:3000/estimation/results")
+  const fetchResult = await fetch('http://localhost:3000/estimation/results')
   results.value = await fetchResult.json()
 }
 
@@ -37,9 +37,9 @@ onMounted(async () => {
   justify-content: center;
   align-content: center;
   grid-template-areas:
-    "heading"
-    "status"
-    "reset";
+    'heading'
+    'status'
+    'reset';
   min-height: 100vh;
   min-width: 100vw;
   grid-row-gap: 20px;

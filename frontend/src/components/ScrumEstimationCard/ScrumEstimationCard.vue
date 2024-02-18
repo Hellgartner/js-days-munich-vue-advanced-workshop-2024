@@ -9,18 +9,18 @@
 </template>
 
 <script lang="ts" setup>
-import ToggleableCard from "../ToggleableCard/ToggleableCard.vue";
+import ToggleableCard from '../ToggleableCard/ToggleableCard.vue'
 
 const props = defineProps<{
-  value: string;
-  selectedValue?: string;
-}>();
+  value: string
+  selectedValue?: string
+}>()
 
 const emit = defineEmits<{
-  (e: "selected", value: string): void;
-}>();
+  (e: 'selected', value: string): void
+}>()
 
 const emitSelected = () => {
-  emit("selected", props.value);
-};
+  emit('selected', props.value)
+}
 </script>
