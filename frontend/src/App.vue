@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ScrumEstimationView from "@/views/ScrumEstimationView.vue";
+import ScrumEstimationView from '@/views/ScrumEstimationView.vue'
 </script>
 
 <template>

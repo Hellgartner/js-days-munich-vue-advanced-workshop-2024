@@ -21,7 +21,6 @@ import type { EstimationStatusProps } from '@/components/EstimationStatus/Estima
 
 const props = defineProps<EstimationStatusProps>()
 
-
 const goToEstimationPage = () => {
   // Todo
 }

@@ -9,23 +9,15 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { computed, ref } from 'vue'
 import EstimationResults from '@/components/EstimationResult/EstimationResults.vue'
-import type { EstimationResult } from '@/components/EstimationStatus/EstimationStatus.vue'
+import type { EstimationResult } from '@/types/EstimationResult'
+import dummyEstimationResults from '@/assets/DummyEstimationResults'
 
-const results = ref<EstimationResult[]>([])
+const results = ref<EstimationResult[]>(dummyEstimationResults)
 
 const resultsIncludingPlayerResult = computed<EstimationResult[]>(() => {
-  return [...results.value, {name: "Player", result: "toDo"}]
-})
-
-async function fetchVotingResults() {
-  const fetchResult = await fetch('http://localhost:3000/estimation/results')
-  results.value = await fetchResult.json()
-}
-
-onMounted(async () => {
-  await fetchVotingResults()
+  return [...results.value, { name: 'Player', result: 'toDo' }]
 })
 </script>
 
