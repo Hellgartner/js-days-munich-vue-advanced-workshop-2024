@@ -1,5 +1,7 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import ScrumEstimationView from "@/views/ScrumEstimationView.vue";
+</script>
 
 <template>
-  <router-view />
+  <ScrumEstimationView />
 </template>

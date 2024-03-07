@@ -17,14 +17,13 @@
 </template>
 
 <script setup lang="ts">
-import router from '@/router'
 import type { EstimationStatusProps } from '@/components/EstimationStatus/EstimationStatus.vue'
 
 const props = defineProps<EstimationStatusProps>()
 
 
 const goToEstimationPage = () => {
-  router.push({ path: 'estimation' })
+  // Todo
 }
 </script>
 

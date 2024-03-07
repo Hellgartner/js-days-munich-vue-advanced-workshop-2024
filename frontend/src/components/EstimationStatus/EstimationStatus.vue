@@ -20,7 +20,6 @@
 </template>
 
 <script setup lang="ts">
-import router from '@/router'
 import { computed } from 'vue'
 import YesIcon from '../../assets/done-icon.svg'
 import NoIcon from '../../assets/red-x-line-icon.svg'
@@ -44,7 +43,7 @@ const disabled = computed(() => {
 })
 
 const goToResultsPage = () => {
-  router.push({ path: 'result' })
+  //Todo
 }
 </script>
 
