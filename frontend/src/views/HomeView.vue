@@ -1,3 +1,11 @@
+<template>
+  <div class="login-form">
+    <div class="heading">Next Generation Scrum Poker</div>
+    <div class="name-input">Name: <input class="input-field" v-model="input" /></div>
+    <button class="login-button" @click="login">Login</button>
+  </div>
+</template>
+
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
 import { usePlayerResultStore } from '@/stores/PlayerEstimationResultStore'
@@ -12,14 +20,6 @@ const login = () => {
   router.push({ path: 'estimation' })
 }
 </script>
-
-<template>
-  <div class="login-form">
-    <div class="heading">Next Generation Scrum Poker</div>
-    <div class="name-input">Name: <input class="input-field" v-model="input" /></div>
-    <button class="login-button" @click="login">Login</button>
-  </div>
-</template>
 
 <style scoped lang="scss">
 .login-form {
