@@ -18,12 +18,10 @@
 <script setup lang="ts">
 import ScrumEstimation from '@/components/ScrumEstimation/ScrumEstimation.vue'
 import EstimationStatus from '@/components/EstimationStatus/EstimationStatus.vue'
-import { computed } from 'vue'
+import {computed, ref} from 'vue'
 import useVotingBackend, { type EstimationResult } from '@/composables/useVotingBackend'
-import { usePlayerResultStore } from '@/stores/PlayerEstimationResultStore'
 
-const playerResultStore = usePlayerResultStore()
-
+const playerEstimationResult = ref<EstimationResult>({name: 'player'})
 const initialEstimationVariant = 'fibonacci'
 const { results, setCurrentEstimationVariant, error } = useVotingBackend(
   true,
@@ -31,11 +29,11 @@ const { results, setCurrentEstimationVariant, error } = useVotingBackend(
 )
 
 const resultsIncludingPlayerResult = computed<EstimationResult[]>(() => {
-  return [...results.value, playerResultStore.results]
+  return [...results.value, playerEstimationResult.value]
 })
 
 const updatePlayersResult = (result: string | undefined) => {
-  playerResultStore.setPlayerResult(result)
+  playerEstimationResult.value.result = result
 }
 </script>
 

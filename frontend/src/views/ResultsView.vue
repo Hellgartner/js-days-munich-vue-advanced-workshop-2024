@@ -11,14 +11,12 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
 import EstimationResults from '@/components/EstimationResult/EstimationResults.vue'
-import { usePlayerResultStore } from '@/stores/PlayerEstimationResultStore'
 import type { EstimationResult } from '@/components/EstimationStatus/EstimationStatus.vue'
 
 const results = ref<EstimationResult[]>([])
-const playerResultStore = usePlayerResultStore()
 
 const resultsIncludingPlayerResult = computed<EstimationResult[]>(() => {
-  return [...results.value, playerResultStore.results]
+  return [...results.value, {name: "Player", result: "toDo"}]
 })
 
 async function fetchVotingResults() {
