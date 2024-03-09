@@ -9,12 +9,12 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import EstimationResults from '@/components/EstimationResult/EstimationResults.vue'
 import type { EstimationResult } from '@/types/EstimationResult'
-import dummyEstimationResults from '@/assets/DummyEstimationResults'
+import useVotingBackend from '@/composables/useVotingBackend'
 
-const results = ref<EstimationResult[]>(dummyEstimationResults)
+const { results } = useVotingBackend(false, undefined)
 
 const resultsIncludingPlayerResult = computed<EstimationResult[]>(() => {
   return [...results.value, { name: 'Player', result: 'toDo' }]
