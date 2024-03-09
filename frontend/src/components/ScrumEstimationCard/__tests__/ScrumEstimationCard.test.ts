@@ -10,7 +10,6 @@ import {
   expectCardNotToBeSelected,
   expectCardToBeSelected
 } from '../../ToggleableCard/__tests__/ToggleableCard.assertions'
-
 describe('ScrumEstimationCard', () => {
   it('renders', () => {
     const { container } = render(ScrumEstimationCard, {
