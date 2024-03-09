@@ -1,6 +1,6 @@
 # Exercise 1
 
-Test [ScrumEstimationCard.vue](frontend/src/components/ScrumEstimationCard/ScrumEstimationCard.vue) (see [ScrumEstimationCard.test.ts](frontend/src/components/ScrumEstimationCard/__tests__/ScrumEstimationCard.test.ts))
+Test [ScrumEstimationCard.vue](../frontend/src/components/ScrumEstimationCard/ScrumEstimationCard.vue) (see [ScrumEstimationCard.test.ts](frontend/src/components/ScrumEstimationCard/__tests__/ScrumEstimationCard.test.ts))
 
 1. Write a test ensuring that the component renders at all
 2. Check that it renders the value provided by the props
