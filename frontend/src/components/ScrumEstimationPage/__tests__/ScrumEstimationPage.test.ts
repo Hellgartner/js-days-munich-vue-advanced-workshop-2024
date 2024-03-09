@@ -9,6 +9,7 @@ import {
   expectNamesInOrder,
   getEstimationStatus
 } from '../../EstimationStatus/__tests__/EstimationStatus.assertions'
+import { createPinia, setActivePinia } from 'pinia'
 
 let server: SetupServerApi | undefined = undefined
 
@@ -40,7 +41,8 @@ const voteResultsHandler = http.get('http://localhost:3000/estimation/results', 
 
 describe('ScrumEstimationPage', () => {
   beforeAll(() => {
-    server = setupServer() as SetupServerApi
+    setActivePinia(createPinia())
+    server = setupServer()
     server?.listen()
   })
 

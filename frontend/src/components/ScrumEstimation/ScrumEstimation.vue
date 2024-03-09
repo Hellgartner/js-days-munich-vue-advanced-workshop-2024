@@ -59,7 +59,6 @@ const removeSelection = () => {
 const selectEstimationVariant = () => {
   console.log('selected variant', selectedSelectionType.value)
   emit('estimationVariantChanged', selectedSelectionType.value)
-  removeSelection()
 }
 </script>
 

@@ -9,15 +9,25 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import EstimationResults from '@/components/EstimationResult/EstimationResults.vue'
-import type { EstimationResult } from '@/types/EstimationResult'
-import dummyEstimationResults from '@/assets/DummyEstimationResults'
+import { usePlayerResultStore } from '@/stores/PlayerEstimationResultStore'
+import type { EstimationResult } from '@/components/EstimationStatus/EstimationStatus.vue'
 
-const results = ref<EstimationResult[]>(dummyEstimationResults)
+const results = ref<EstimationResult[]>([])
+const playerResultStore = usePlayerResultStore()
 
 const resultsIncludingPlayerResult = computed<EstimationResult[]>(() => {
-  return [...results.value, { name: 'Player', result: 'toDo' }]
+  return [...results.value, playerResultStore.results]
+})
+
+async function fetchVotingResults() {
+  const fetchResult = await fetch('http://localhost:3000/estimation/results')
+  results.value = await fetchResult.json()
+}
+
+onMounted(async () => {
+  await fetchVotingResults()
 })
 </script>
 

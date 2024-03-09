@@ -8,12 +8,15 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
+import { usePlayerResultStore } from '@/stores/PlayerEstimationResultStore'
 import { ref } from 'vue'
 
 const router = useRouter()
+const store = usePlayerResultStore()
 
 const input = ref<string>('')
 const login = () => {
+  store.setPlayerName(input.value)
   router.push({ path: 'estimation' })
 }
 </script>
