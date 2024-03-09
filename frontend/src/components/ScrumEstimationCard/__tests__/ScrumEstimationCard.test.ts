@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { fireEvent, getByTestId, render } from '@testing-library/vue'
+import { fireEvent, render } from '@testing-library/vue'
 import ScrumEstimationCard from '../ScrumEstimationCard.vue'
 import {
   expectCorrectEventToBeEmitted,
@@ -19,7 +19,7 @@ describe('ScrumEstimationCard', () => {
       }
     })
 
-    expect(container).not.toBeNull
+    expect(container).not.toBeNull()
   })
 
   it('renders the correct value', () => {
@@ -44,7 +44,7 @@ describe('ScrumEstimationCard', () => {
     expectCardToBeSelected(scrumEstimationCard)
   })
 
-  it('does not select the card if value and selected value are not the same', () => {
+  it('does not select the card if value and selected value differ', () => {
     const { container } = render(ScrumEstimationCard, {
       props: {
         value: 'test value',
