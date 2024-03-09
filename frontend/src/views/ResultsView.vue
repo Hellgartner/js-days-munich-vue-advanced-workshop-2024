@@ -9,26 +9,19 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { computed } from 'vue'
 import EstimationResults from '@/components/EstimationResult/EstimationResults.vue'
+import type { EstimationResult } from '@/types/EstimationResult'
+import useVotingBackend from '@/composables/useVotingBackend'
 import { usePlayerResultStore } from '@/stores/PlayerEstimationResultStore'
-import type { EstimationResult } from '@/components/EstimationStatus/EstimationStatus.vue'
 
-const results = ref<EstimationResult[]>([])
 const playerResultStore = usePlayerResultStore()
+const { results } = useVotingBackend(false, undefined)
 
 const resultsIncludingPlayerResult = computed<EstimationResult[]>(() => {
   return [...results.value, playerResultStore.results]
 })
 
-async function fetchVotingResults() {
-  const fetchResult = await fetch('http://localhost:3000/estimation/results')
-  results.value = await fetchResult.json()
-}
-
-onMounted(async () => {
-  await fetchVotingResults()
-})
 </script>
 
 <style scoped lang="scss">
