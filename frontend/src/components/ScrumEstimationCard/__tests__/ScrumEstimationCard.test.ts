@@ -13,7 +13,7 @@ describe('ScrumEstimationCard', () => {
     //ToDo
   })
 
-  it('does not select the card if value and selected value are the same', () => {
+  it('does not select the card if value and selected value differ', () => {
     //ToDo
   })
 
