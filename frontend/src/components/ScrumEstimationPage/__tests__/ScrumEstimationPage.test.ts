@@ -1,7 +1,14 @@
 import { afterAll, afterEach, beforeAll, beforeEach, describe } from 'vitest'
 import { setupServer, SetupServerApi } from 'msw/node'
 import { http, HttpResponse } from 'msw'
+import { render } from '@testing-library/vue'
+import ScrumEstimationPage from '../ScrumEstimationPage.vue'
 import type { EstimationVariant } from '../../../services/scrumEstimationValuesProvider'
+import { flushPromises } from '@vue/test-utils'
+import {
+  expectNamesInOrder,
+  getEstimationStatus
+} from '../../EstimationStatus/__tests__/EstimationStatus.assertions'
 
 let server: SetupServerApi | undefined = undefined
 
@@ -50,11 +57,28 @@ describe('ScrumEstimationPage', () => {
     server?.close()
   })
 
-  it.skip('starts the voting on page load with fibonacci', async () => {
-    //ToDo
+  it('starts the voting on page load with fibonacci', async () => {
+    const estimationVariant: { variant: EstimationVariant | undefined } = { variant: undefined }
+    server?.use(votingStartedHandler(estimationVariant))
+
+    render(ScrumEstimationPage)
+
+    await flushPromises()
+
+    expect(estimationVariant.variant).toBe('fibonacci')
   })
 
-  it.skip('renders the shown voters as soon as the first poll is in', async () => {
-    //ToDo
+  it('renders the shown voters as soon as the first poll is in', async () => {
+    server?.use(votingStartedHandler(), voteResultsHandler)
+
+    const { container } = render(ScrumEstimationPage)
+    await flushPromises()
+
+    vi.advanceTimersByTime(2000)
+
+    await flushPromises()
+
+    const estimationStatus = getEstimationStatus(container)
+    expectNamesInOrder(estimationStatus, ['Franz Xaver', 'Bob Brown', 'Player'])
   })
 })
