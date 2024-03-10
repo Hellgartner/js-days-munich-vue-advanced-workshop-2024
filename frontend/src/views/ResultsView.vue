@@ -14,6 +14,7 @@ import EstimationResults from '@/components/EstimationResult/EstimationResults.v
 import type { EstimationResult } from '@/types/EstimationResult'
 import dummyEstimationResults from '@/assets/DummyEstimationResults'
 
+// ToDo Exercise 3.2 Re-use 'results' from useVotingBackend instead of using 'dummyEstimationResults'.
 const results = ref<EstimationResult[]>(dummyEstimationResults)
 
 const resultsIncludingPlayerResult = computed<EstimationResult[]>(() => {
