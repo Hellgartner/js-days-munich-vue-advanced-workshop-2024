@@ -40,7 +40,10 @@ const disabled = computed(() => {
 })
 
 const goToResultsPage = () => {
-  //Todo
+  // ToDo Exercise 4.4 Use VueRouter here
+  window.location.assign('/result')
+
+  // ToDo Exercise 4.6 Use a named route here
 }
 </script>
 

@@ -22,7 +22,10 @@ import type { EstimationStatusProps } from '@/components/EstimationStatus/Estima
 const props = defineProps<EstimationStatusProps>()
 
 const goToEstimationPage = () => {
-  // Todo
+  // ToDo Exercise 4.5 Use VueRouter here
+  window.location.assign('/estimation')
+
+  // ToDo Exercise 4.6 Use a named route here
 }
 </script>
 
