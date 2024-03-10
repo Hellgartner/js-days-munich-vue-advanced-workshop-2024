@@ -50,11 +50,11 @@ describe('ScrumEstimationPage', () => {
     server?.close()
   })
 
-  it.skip('starts the voting on page load with fibonacci', async () => {
-    //ToDo
+  it('starts the voting on page load with fibonacci', async () => {
+    // ToDo Exercise 2.3
   })
 
-  it.skip('renders the shown voters as soon as the first poll is in', async () => {
-    //ToDo
+  it('renders the shown voters as soon as the first poll is in', async () => {
+    // ToDo Exercise 2.4
   })
 })
