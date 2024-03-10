@@ -28,6 +28,7 @@ const playerEstimationResult = ref<EstimationResult>({ name: 'Player' })
 const results = ref<EstimationResult[]>(dummyEstimationResults)
 const error = ref<String | false>(false)
 const resultsIncludingPlayerResult = computed<EstimationResult[]>(() => {
+  // ToDo Exercise 5.3 Use players voting result from the pinia store
   return [...results.value, playerEstimationResult.value]
 })
 
@@ -42,6 +43,7 @@ const setCurrentEstimationVariant = (newVariant: EstimationVariant) => {
 }
 
 const updatePlayersResult = (result: string | undefined) => {
+  // ToDo Exercise 5.4 Save the user's voting result in the pinia store
   playerEstimationResult.value.result = result
 }
 

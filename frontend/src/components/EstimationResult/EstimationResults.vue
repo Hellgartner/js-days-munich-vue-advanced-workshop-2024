@@ -26,6 +26,8 @@ const goToEstimationPage = () => {
   window.location.assign('/estimation')
 
   // ToDo Exercise 4.6 Use a named route here
+
+  // ToDo Exercise 5.6 Reset the user's voting result
 }
 </script>
 

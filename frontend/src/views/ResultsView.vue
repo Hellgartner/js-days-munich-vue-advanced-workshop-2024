@@ -18,7 +18,8 @@ import dummyEstimationResults from '@/assets/DummyEstimationResults'
 const results = ref<EstimationResult[]>(dummyEstimationResults)
 
 const resultsIncludingPlayerResult = computed<EstimationResult[]>(() => {
-  return [...results.value, { name: 'Player', result: 'toDo' }]
+  // ToDo Exercise 5.5 Use players voting result from the pinia store
+  return [...results.value, { name: 'Player', result: 'ToDo' }]
 })
 </script>
 

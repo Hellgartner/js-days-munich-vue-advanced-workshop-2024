@@ -15,6 +15,8 @@ const login = () => {
   window.location.assign('/estimation')
 
   // ToDo Exercise 4.6 Use a named route here
+
+  // ToDo Exercise 5.2 Save the user's name in the pinia store
 }
 </script>
 
