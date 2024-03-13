@@ -46,8 +46,6 @@ async function startVotingWithVariant(variant: EstimationVariant) {
     })
   } catch (e) {
     // ToDo Exercise 3.3 Part 1/2: In case the backend responses with an error update 'error' with the error message
-    console.error(e)
-    error.value = '' + e
   }
 }
 
@@ -63,10 +61,6 @@ async function fetchVotingResults() {
     loading.value = false
   } catch (e) {
     // ToDo Exercise 3.3 Part 2/2: In case the backend responds with an error update 'error' with the error message
-    console.error(e)
-    error.value = '' + e
-    results.value = []
-    loading.value = true
   }
 }
 
