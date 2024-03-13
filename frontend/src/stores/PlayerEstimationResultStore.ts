@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { reactive } from 'vue'
-import type { EstimationResult } from '@/components/EstimationStatus/EstimationStatus.vue'
+import type { EstimationResult } from '@/types/EstimationResult'
 
 export const usePlayerResultStore = defineStore('estimationResult', () => {
   const results = reactive<EstimationResult>({ name: 'Player', result: undefined })

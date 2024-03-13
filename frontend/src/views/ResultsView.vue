@@ -21,7 +21,6 @@ const { results } = useVotingBackend(false, undefined)
 const resultsIncludingPlayerResult = computed<EstimationResult[]>(() => {
   return [...results.value, playerResultStore.results]
 })
-
 </script>
 
 <style scoped lang="scss">

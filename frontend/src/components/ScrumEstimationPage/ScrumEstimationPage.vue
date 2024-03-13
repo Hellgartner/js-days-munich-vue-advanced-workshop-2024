@@ -3,7 +3,7 @@
   <div class="center-content">
     <ScrumEstimation
       :initial-estimation-variant="initialEstimationVariant"
-      @estimation-variant-changed="setCurrentEstimationVariant"
+      @estimation-variant-changed="startVotingWithVariant"
       @estimationChanged="updatePlayersResult"
     >
       >
@@ -19,16 +19,15 @@
 import ScrumEstimation from '@/components/ScrumEstimation/ScrumEstimation.vue'
 import EstimationStatus from '@/components/EstimationStatus/EstimationStatus.vue'
 import { computed } from 'vue'
-import useVotingBackend, { type EstimationResult } from '@/composables/useVotingBackend'
+import useVotingBackend from '@/composables/useVotingBackend'
+import type { EstimationResult } from '@/types/EstimationResult'
+import type { EstimationVariant } from '@/services/scrumEstimationValuesProvider'
 import { usePlayerResultStore } from '@/stores/PlayerEstimationResultStore'
 
 const playerResultStore = usePlayerResultStore()
 
-const initialEstimationVariant = 'fibonacci'
-const { results, setCurrentEstimationVariant, error } = useVotingBackend(
-  true,
-  initialEstimationVariant
-)
+const initialEstimationVariant: EstimationVariant = 'fibonacci'
+const { results, startVotingWithVariant, error } = useVotingBackend(true, initialEstimationVariant)
 
 const resultsIncludingPlayerResult = computed<EstimationResult[]>(() => {
   return [...results.value, playerResultStore.results]

@@ -16,8 +16,9 @@ const store = usePlayerResultStore()
 
 const input = ref<string>('')
 const login = () => {
-  store.setPlayerName(input.value)
   router.push({ path: 'estimation' })
+
+  store.setPlayerName(input.value)
 }
 </script>
 

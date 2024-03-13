@@ -18,16 +18,19 @@
 
 <script setup lang="ts">
 import router from '@/router'
+import type { EstimationResult } from '@/types/EstimationResult'
 import { usePlayerResultStore } from '@/stores/PlayerEstimationResultStore'
-import type { EstimationStatusProps } from '@/components/EstimationStatus/EstimationStatus.vue'
 
-const props = defineProps<EstimationStatusProps>()
+const props = defineProps<{
+  estimationResults: EstimationResult[]
+}>()
 
 const playerResultStore = usePlayerResultStore()
 
 const goToEstimationPage = () => {
-  playerResultStore.resetPlayerResult()
   router.push({ path: 'estimation' })
+
+  playerResultStore.resetPlayerResult()
 }
 </script>
 
