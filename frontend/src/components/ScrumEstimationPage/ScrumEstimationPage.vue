@@ -3,7 +3,7 @@
   <div class="center-content">
     <ScrumEstimation
       :initial-estimation-variant="initialEstimationVariant"
-      @estimation-variant-changed="setCurrentEstimationVariant"
+      @estimation-variant-changed="startVotingWithVariant"
       @estimationChanged="updatePlayersResult"
     >
       >
@@ -19,21 +19,21 @@
 import ScrumEstimation from '@/components/ScrumEstimation/ScrumEstimation.vue'
 import EstimationStatus from '@/components/EstimationStatus/EstimationStatus.vue'
 import { computed, ref } from 'vue'
-import useVotingBackend, { type EstimationResult } from '@/composables/useVotingBackend'
+import useVotingBackend from '@/composables/useVotingBackend'
+import type { EstimationResult } from '@/types/EstimationResult'
 import type { EstimationVariant } from '@/services/scrumEstimationValuesProvider'
 
 const initialEstimationVariant: EstimationVariant = 'fibonacci'
 const playerEstimationResult = ref<EstimationResult>({ name: 'Player' })
-const { results, setCurrentEstimationVariant, error } = useVotingBackend(
-  true,
-  initialEstimationVariant
-)
+const { results, startVotingWithVariant, error } = useVotingBackend(true, initialEstimationVariant)
 
 const resultsIncludingPlayerResult = computed<EstimationResult[]>(() => {
+  // ToDo Exercise 5.3 Use players voting result from the pinia store
   return [...results.value, playerEstimationResult.value]
 })
 
 const updatePlayersResult = (result: string | undefined) => {
+  // ToDo Exercise 5.4 Save the user's voting result in the pinia store
   playerEstimationResult.value.result = result
 }
 </script>

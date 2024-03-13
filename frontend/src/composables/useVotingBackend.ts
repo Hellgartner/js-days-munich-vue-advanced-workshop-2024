@@ -1,15 +1,14 @@
 import type { EstimationVariant } from '@/services/scrumEstimationValuesProvider'
 import { onMounted, onUnmounted, ref } from 'vue'
+import type { EstimationResult } from '@/types/EstimationResult'
 
-export interface EstimationResult {
-  name: string
-  result?: string
-}
+const useVotingBackend = (
+  doPoll: boolean,
+  initialEstimationVariant: EstimationVariant | undefined
+) => {
+  const error = ref<String | false>(false)
 
-const useVotingBackend = (doPoll: boolean, initialEstimationVariant?: EstimationVariant) => {
-  const error = ref<String | undefined>(undefined)
-  const loading = ref(true)
-  async function startVotingWithCurrentVariant(variant: EstimationVariant) {
+  async function startVotingWithVariant(variant: EstimationVariant) {
     try {
       await fetch('http://localhost:3000/estimation/vote', {
         method: 'POST',
@@ -24,12 +23,6 @@ const useVotingBackend = (doPoll: boolean, initialEstimationVariant?: Estimation
       error.value = '' + e
     }
   }
-  const currentEstimationVariant = ref<EstimationVariant>('fibonacci')
-
-  const setCurrentEstimationVariant = (variant: EstimationVariant): Promise<void> => {
-    currentEstimationVariant.value = variant
-    return startVotingWithCurrentVariant(variant)
-  }
 
   const results = ref<EstimationResult[]>([])
 
@@ -37,12 +30,10 @@ const useVotingBackend = (doPoll: boolean, initialEstimationVariant?: Estimation
     try {
       const fetchResult = await fetch('http://localhost:3000/estimation/results')
       results.value = await fetchResult.json()
-      loading.value = false
     } catch (e) {
       console.error(e)
       error.value = '' + e
       results.value = []
-      loading.value = true
     }
   }
 
@@ -50,10 +41,11 @@ const useVotingBackend = (doPoll: boolean, initialEstimationVariant?: Estimation
 
   onMounted(async () => {
     if (initialEstimationVariant) {
-      await startVotingWithCurrentVariant(currentEstimationVariant.value)
+      await startVotingWithVariant(initialEstimationVariant)
     }
+
     if (doPoll) {
-      intervalId = setInterval(fetchVotingResults, 1000) as unknown as number
+      intervalId = window.setInterval(fetchVotingResults, 1000)
     } else {
       await fetchVotingResults()
     }
@@ -61,16 +53,14 @@ const useVotingBackend = (doPoll: boolean, initialEstimationVariant?: Estimation
 
   onUnmounted(() => {
     if (intervalId) {
-      clearInterval(intervalId)
+      window.clearInterval(intervalId)
     }
   })
 
   return {
     results,
-    setCurrentEstimationVariant,
-    error,
-    loading
+    startVotingWithVariant,
+    error
   }
 }
-
 export default useVotingBackend
