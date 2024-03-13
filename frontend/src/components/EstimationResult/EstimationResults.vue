@@ -17,9 +17,11 @@
 </template>
 
 <script setup lang="ts">
-import type { EstimationStatusProps } from '@/components/EstimationStatus/EstimationStatus.vue'
+import type { EstimationResult } from '@/types/EstimationResult'
 
-const props = defineProps<EstimationStatusProps>()
+const props = defineProps<{
+  estimationResults: EstimationResult[]
+}>()
 
 const goToEstimationPage = () => {
   // ToDo Exercise 4.5 Use VueRouter here
