@@ -3,7 +3,7 @@
   <div class="center-content">
     <ScrumEstimation
       :initial-estimation-variant="initialEstimationVariant"
-      @estimation-variant-changed="setCurrentEstimationVariant"
+      @estimation-variant-changed="startVotingWithVariant"
       @estimationChanged="updatePlayersResult"
     >
       >
@@ -18,22 +18,23 @@
 <script setup lang="ts">
 import ScrumEstimation from '@/components/ScrumEstimation/ScrumEstimation.vue'
 import EstimationStatus from '@/components/EstimationStatus/EstimationStatus.vue'
-import {computed, onMounted, onUnmounted, ref} from 'vue'
+import { computed, onMounted, onUnmounted, ref } from 'vue'
 import type { EstimationResult } from '@/types/EstimationResult'
 import type { EstimationVariant } from '@/services/scrumEstimationValuesProvider'
 
 const initialEstimationVariant: EstimationVariant = 'fibonacci'
 const playerEstimationResult = ref<EstimationResult>({ name: 'Player' })
 const results = ref<EstimationResult[]>([])
-const error = ref<String | undefined>(undefined)
+const error = ref<String | false>(false)
 const loading = ref(true)
 const doPoll = true
 
 const resultsIncludingPlayerResult = computed<EstimationResult[]>(() => {
+  // ToDo Exercise 5.3 Use players voting result from the pinia store
   return [...results.value, playerEstimationResult.value]
 })
 
-async function startVotingWithCurrentVariant(variant: EstimationVariant) {
+async function startVotingWithVariant(variant: EstimationVariant) {
   try {
     await fetch('http://localhost:3000/estimation/vote', {
       method: 'POST',
@@ -44,18 +45,14 @@ async function startVotingWithCurrentVariant(variant: EstimationVariant) {
       body: JSON.stringify({ variant })
     })
   } catch (e) {
+    // ToDo Exercise 3.3 Part 1/2: In case the backend responses with an error update 'error' with the error message
     console.error(e)
     error.value = '' + e
   }
 }
-const currentEstimationVariant = ref<EstimationVariant>('fibonacci')
-
-const setCurrentEstimationVariant = (newVariant: EstimationVariant): Promise<void> => {
-  currentEstimationVariant.value = newVariant
-  return startVotingWithCurrentVariant(newVariant)
-}
 
 const updatePlayersResult = (result: string | undefined) => {
+  // ToDo Exercise 5.4 Save the user's voting result in the pinia store
   playerEstimationResult.value.result = result
 }
 
@@ -65,6 +62,7 @@ async function fetchVotingResults() {
     results.value = await fetchResult.json()
     loading.value = false
   } catch (e) {
+    // ToDo Exercise 3.3 Part 2/2: In case the backend responds with an error update 'error' with the error message
     console.error(e)
     error.value = '' + e
     results.value = []
@@ -76,7 +74,7 @@ let intervalId: number | undefined = undefined
 
 onMounted(async () => {
   if (initialEstimationVariant) {
-    await startVotingWithCurrentVariant(currentEstimationVariant.value)
+    await startVotingWithVariant(initialEstimationVariant)
   }
   if (doPoll) {
     intervalId = setInterval(fetchVotingResults, 1000) as unknown as number
