@@ -18,7 +18,7 @@
 <script setup lang="ts">
 import ScrumEstimation from '@/components/ScrumEstimation/ScrumEstimation.vue'
 import EstimationStatus from '@/components/EstimationStatus/EstimationStatus.vue'
-import {computed, onMounted, onUnmounted, ref} from 'vue'
+import { computed, onMounted, onUnmounted, ref } from 'vue'
 import type { EstimationResult } from '@/types/EstimationResult'
 import type { EstimationVariant } from '@/services/scrumEstimationValuesProvider'
 import dummyEstimationResults from '@/assets/DummyEstimationResults'
@@ -34,7 +34,6 @@ const resultsIncludingPlayerResult = computed<EstimationResult[]>(() => {
 
 async function startVotingWithCurrentVariant(variant: EstimationVariant) {
   // ToDo Exercise 2.1 Part 1/2: Do a backend call to rigger a new voting session
-
   // ToDo Exercise 3.3 Part 1/2: In case the backend reponses with an error update 'error' with the error message
 }
 
@@ -49,13 +48,11 @@ const updatePlayersResult = (result: string | undefined) => {
 
 async function fetchVotingResults() {
   // ToDo Exercise 2.2 Part 1/3: Query voting results from the backend
-
   // ToDo Exercise 3.3 Part 2/2: In case the backend responds with an error update 'error' with the error message
 }
 
 onMounted(async () => {
   // ToDo Exercise 2.1 Part 2/2: Start voting new voting
-
   // ToDo Exercise 2.2 Part 2/3: Start polling voting results
 })
 
