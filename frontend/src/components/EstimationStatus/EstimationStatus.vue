@@ -24,16 +24,11 @@ import router from '@/router'
 import { computed } from 'vue'
 import YesIcon from '../../assets/done-icon.svg'
 import NoIcon from '../../assets/red-x-line-icon.svg'
+import type { EstimationResult } from '@/types/EstimationResult'
 
-export interface EstimationResult {
-  name: string
-  result?: string
-}
-export interface EstimationStatusProps {
+const props = defineProps<{
   estimationResults: EstimationResult[]
-}
-
-const props = defineProps<EstimationStatusProps>()
+}>()
 
 const disabled = computed(() => {
   return (

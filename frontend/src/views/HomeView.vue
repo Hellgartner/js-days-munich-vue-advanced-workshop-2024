@@ -15,6 +15,8 @@ const router = useRouter()
 const input = ref<string>('')
 const login = () => {
   router.push({ path: 'estimation' })
+
+  // ToDo Exercise 5.2 Save the user's name in the pinia store
 }
 </script>
 

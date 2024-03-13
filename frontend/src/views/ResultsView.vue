@@ -17,7 +17,8 @@ import useVotingBackend from '@/composables/useVotingBackend'
 const { results } = useVotingBackend(false, undefined)
 
 const resultsIncludingPlayerResult = computed<EstimationResult[]>(() => {
-  return [...results.value, { name: 'Player', result: 'toDo' }]
+  // ToDo Exercise 5.5 Use players voting result from the pinia store
+  return [...results.value, { name: 'Player', result: 'ToDo' }]
 })
 </script>
 

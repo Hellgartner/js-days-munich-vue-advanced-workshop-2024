@@ -18,12 +18,16 @@
 
 <script setup lang="ts">
 import router from '@/router'
-import type { EstimationStatusProps } from '@/components/EstimationStatus/EstimationStatus.vue'
+import type { EstimationResult } from '@/types/EstimationResult'
 
-const props = defineProps<EstimationStatusProps>()
+const props = defineProps<{
+  estimationResults: EstimationResult[]
+}>()
 
 const goToEstimationPage = () => {
   router.push({ path: 'estimation' })
+
+  // ToDo Exercise 5.6 Reset the user's voting result
 }
 </script>
 
