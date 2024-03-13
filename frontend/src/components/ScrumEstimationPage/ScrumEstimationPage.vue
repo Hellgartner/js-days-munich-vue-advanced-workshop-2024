@@ -68,8 +68,9 @@ onMounted(async () => {
   if (initialEstimationVariant) {
     await startVotingWithVariant(initialEstimationVariant)
   }
+
   if (doPoll) {
-    intervalId = setInterval(fetchVotingResults, 1000) as unknown as number
+    intervalId = window.setInterval(fetchVotingResults, 1000)
   } else {
     await fetchVotingResults()
   }
@@ -77,7 +78,7 @@ onMounted(async () => {
 
 onUnmounted(() => {
   if (intervalId) {
-    clearInterval(intervalId)
+    window.clearInterval(intervalId)
   }
 })
 </script>
