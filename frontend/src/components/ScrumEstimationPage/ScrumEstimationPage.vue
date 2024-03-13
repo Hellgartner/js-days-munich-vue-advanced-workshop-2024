@@ -26,7 +26,6 @@ const initialEstimationVariant: EstimationVariant = 'fibonacci'
 const playerEstimationResult = ref<EstimationResult>({ name: 'Player' })
 const results = ref<EstimationResult[]>([])
 const error = ref<String | false>(false)
-const loading = ref(true)
 const doPoll = true
 
 const resultsIncludingPlayerResult = computed<EstimationResult[]>(() => {
@@ -58,7 +57,6 @@ async function fetchVotingResults() {
   try {
     const fetchResult = await fetch('http://localhost:3000/estimation/results')
     results.value = await fetchResult.json()
-    loading.value = false
   } catch (e) {
     // ToDo Exercise 3.3 Part 2/2: In case the backend responds with an error update 'error' with the error message
   }
