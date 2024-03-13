@@ -34,7 +34,7 @@ const resultsIncludingPlayerResult = computed<EstimationResult[]>(() => {
 
 async function startVotingWithVariant(variant: EstimationVariant) {
   // ToDo Exercise 2.1 Part 1/2: Do a backend call to rigger a new voting session
-  // ToDo Exercise 3.3 Part 1/2: In case the backend reponses with an error update 'error' with the error message
+  // ToDo Exercise 3.3 Part 1/2: In case the backend responses with an error update 'error' with the error message
 }
 
 const updatePlayersResult = (result: string | undefined) => {
