@@ -33,7 +33,7 @@ const voteResultsHandler = http.get('http://localhost:3000/estimation/results', 
 
 describe('ScrumEstimationPage', () => {
   beforeAll(() => {
-    server = setupServer() as SetupServerApi
+    server = setupServer()
     server?.listen()
   })
 
