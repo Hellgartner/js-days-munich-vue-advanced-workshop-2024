@@ -3,7 +3,7 @@
   <div class="center-content">
     <ScrumEstimation
       :initial-estimation-variant="initialEstimationVariant"
-      @estimation-variant-changed="setCurrentEstimationVariant"
+      @estimation-variant-changed="startVotingWithVariant"
       @estimationChanged="updatePlayersResult"
     >
       >
@@ -32,13 +32,9 @@ const resultsIncludingPlayerResult = computed<EstimationResult[]>(() => {
   return [...results.value, playerEstimationResult.value]
 })
 
-async function startVotingWithCurrentVariant(variant: EstimationVariant) {
+async function startVotingWithVariant(variant: EstimationVariant) {
   // ToDo Exercise 2.1 Part 1/2: Do a backend call to rigger a new voting session
   // ToDo Exercise 3.3 Part 1/2: In case the backend reponses with an error update 'error' with the error message
-}
-
-const setCurrentEstimationVariant = (newVariant: EstimationVariant) => {
-  playerEstimationResult.value.result = undefined
 }
 
 const updatePlayersResult = (result: string | undefined) => {
