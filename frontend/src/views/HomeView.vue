@@ -11,7 +11,12 @@ import { ref } from 'vue'
 
 const input = ref<string>('')
 const login = () => {
-  //ToDo
+  // ToDo Exercise 4.3 Use VueRouter here
+  window.location.assign('/estimation')
+
+  // ToDo Exercise 4.6 Use a named route here
+
+  // ToDo Exercise 5.2 Save the user's name in the pinia store
 }
 </script>
 

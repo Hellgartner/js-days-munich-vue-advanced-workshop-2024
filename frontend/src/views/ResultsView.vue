@@ -14,10 +14,12 @@ import EstimationResults from '@/components/EstimationResult/EstimationResults.v
 import type { EstimationResult } from '@/types/EstimationResult'
 import dummyEstimationResults from '@/assets/DummyEstimationResults'
 
+// ToDo Exercise 3.2 Re-use 'results' from useVotingBackend instead of using 'dummyEstimationResults'.
 const results = ref<EstimationResult[]>(dummyEstimationResults)
 
 const resultsIncludingPlayerResult = computed<EstimationResult[]>(() => {
-  return [...results.value, { name: 'Player', result: 'toDo' }]
+  // ToDo Exercise 5.5 Use players voting result from the pinia store
+  return [...results.value, { name: 'Player', result: 'ToDo' }]
 })
 </script>
 

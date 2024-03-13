@@ -17,12 +17,19 @@
 </template>
 
 <script setup lang="ts">
-import type { EstimationStatusProps } from '@/components/EstimationStatus/EstimationStatus.vue'
+import type { EstimationResult } from '@/types/EstimationResult'
 
-const props = defineProps<EstimationStatusProps>()
+const props = defineProps<{
+  estimationResults: EstimationResult[]
+}>()
 
 const goToEstimationPage = () => {
-  // Todo
+  // ToDo Exercise 4.5 Use VueRouter here
+  window.location.assign('/estimation')
+
+  // ToDo Exercise 4.6 Use a named route here
+
+  // ToDo Exercise 5.6 Reset the user's voting result
 }
 </script>
 
