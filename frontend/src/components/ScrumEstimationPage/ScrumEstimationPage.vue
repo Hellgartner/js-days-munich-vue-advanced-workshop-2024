@@ -33,8 +33,14 @@ const resultsIncludingPlayerResult = computed<EstimationResult[]>(() => {
 })
 
 async function startVotingWithVariant(variant: EstimationVariant) {
-  // ToDo Exercise 2.1 Part 1/2: Do a backend call to rigger a new voting session
-  // ToDo Exercise 3.3 Part 1/2: In case the backend responses with an error update 'error' with the error message
+  await fetch('http://localhost:3000/estimation/vote', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ variant })
+  })
 }
 
 const updatePlayersResult = (result: string | undefined) => {
@@ -42,9 +48,13 @@ const updatePlayersResult = (result: string | undefined) => {
   playerEstimationResult.value.result = result
 }
 
+const getVotingResultsFromBackend = async ():Promise<EstimationResult[]> => {
+  const fetchResult = await fetch('http://localhost:3000/estimation/results')
+  return fetchResult.json()
+}
+
 async function fetchVotingResults() {
-  // ToDo Exercise 2.2 Part 1/3: Query voting results from the backend
-  // ToDo Exercise 3.3 Part 2/2: In case the backend responds with an error update 'error' with the error message
+  // ToDo Exercise 2.2 Part 1/3: Query voting results from the backend and update the components state
 }
 
 onMounted(async () => {
