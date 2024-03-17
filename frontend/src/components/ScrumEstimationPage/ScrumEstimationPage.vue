@@ -53,10 +53,14 @@ const updatePlayersResult = (result: string | undefined) => {
   playerEstimationResult.value.result = result
 }
 
+const getVotingResultsFromBackend = async ():Promise<EstimationResult[]> => {
+  const fetchResult = await fetch('http://localhost:3000/estimation/results')
+  return fetchResult.json()
+}
+
 async function fetchVotingResults() {
   try {
-    const fetchResult = await fetch('http://localhost:3000/estimation/results')
-    results.value = await fetchResult.json()
+    results.value = await getVotingResultsFromBackend()
   } catch (e) {
     // ToDo Exercise 3.3 Part 2/2: In case the backend responds with an error update 'error' with the error message
   }
