@@ -14,10 +14,10 @@ describe('ScrumEstimationCard', () => {
   })
 
   it('does not select the card if value and selected value differ', () => {
-    // ToDo Exercise 1.4
+    // ToDo Exercise 1.3
   })
 
   it('emits the selected event on click', async () => {
-    // ToDo Exercise 1.5
+    // ToDo Exercise 1.4
   })
 })
