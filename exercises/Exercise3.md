@@ -1,4 +1,4 @@
-# Exercise 3
+# Exercise 3 (Optional)
 
 1. Extract getting the voting results from the backend into the composable [useVotingBackend.ts](../frontend/src/composables/useVotingBackend.ts).
 2. Re-use the `results` of the voting in [ResultsView.vue](../frontend/src/views/ResultsView.vue).

@@ -16,7 +16,7 @@ Extend the app to uses all three Views in `frontend/src/views`
    see [EstimationStatus.vue](../frontend/src/components/EstimationStatus/EstimationStatus.vue))
 5. When clicking the `Reset Results` button, go to `/estimation`. (
    see [EstimationResults.vue](../frontend/src/components/EstimationResult/EstimationResults.vue))
-6. Add names to the routes above (see [index.ts](../frontend/src/router/index.ts)) and use the named routes in
+6. Optional: Add names to the routes above (see [index.ts](../frontend/src/router/index.ts)) and use the named routes in
     * [HomeView.vue](../frontend/src/views/HomeView.vue)
     * [EstimationStatus.vue](../frontend/src/components/EstimationStatus/EstimationStatus.vue)
     * [EstimationStatus.vue](../frontend/src/components/EstimationStatus/EstimationStatus.vue)

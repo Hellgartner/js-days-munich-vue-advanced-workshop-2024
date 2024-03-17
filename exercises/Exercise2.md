@@ -15,5 +15,5 @@ It features a swagger based endpoint documentation accessible at http://localhos
     * Pass the results to the `EstimationStatus` component.
     * Double check: Do you need to clean-up something to avoid a memory leak.
     * Hint: Polling in javascript: [setInterval()](https://developer.mozilla.org/en-US/docs/Web/API/setInterval#syntax)
-3. Write a test checking that the component starts a new voting session. (see [ScrumEstimationPage.test.ts](../frontend/src/components/ScrumEstimationPage/__tests__/ScrumEstimationPage.test.ts))
-4. Write a test checking that the component shows the names of additional voters returned by the backend request. (see [ScrumEstimationPage.test.ts](../frontend/src/components/ScrumEstimationPage/__tests__/ScrumEstimationPage.test.ts))
+3. Optional: Write a test checking that the component starts a new voting session. (see [ScrumEstimationPage.test.ts](../frontend/src/components/ScrumEstimationPage/__tests__/ScrumEstimationPage.test.ts))
+4. Optional: Write a test checking that the component shows the names of additional voters returned by the backend request. (see [ScrumEstimationPage.test.ts](../frontend/src/components/ScrumEstimationPage/__tests__/ScrumEstimationPage.test.ts))
