@@ -54,16 +54,16 @@ const getVotingResultsFromBackend = async ():Promise<EstimationResult[]> => {
 }
 
 async function fetchVotingResults() {
-  // ToDo Exercise 2.2 Part 1/3: Query voting results from the backend and update the components state
+  // ToDo Exercise 2.2 Query voting results from the backend and update the components state
 }
 
 onMounted(async () => {
-  // ToDo Exercise 2.1 Part 2/2: Start voting new voting
-  // ToDo Exercise 2.2 Part 2/3: Start polling voting results
+  // ToDo Exercise 2.1 Start voting new voting
+  // ToDo Exercise 2.2 Start polling voting results
 })
 
 onUnmounted(() => {
-  // ToDo Exercise 2.3 Part 2/3: Do you need to clean-up something? 🤔
+  // ToDo Exercise 2.3 Do you need to clean-up something? 🤔
 })
 </script>
 
